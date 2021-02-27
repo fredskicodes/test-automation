@@ -22,7 +22,7 @@ namespace Testing.Foo.Config
                 {
                     builder.AddJsonFile($"Config/Env/{environ}.json", optional: true);
                 }
-                builder.AddEnvironmentVariables("QA_");
+                builder.AddEnvironmentVariables("AUT_");
                 _configuration = builder.Build();
             }
             return _configuration;

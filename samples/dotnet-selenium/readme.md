@@ -34,8 +34,8 @@ The environment value must match a filename that exists in the `Config/Env` path
 #### Command Line
 ```
 Mac/Linux
-export BASEURL=mywebsie.com
+export AUT_BASEURL=mywebsie.com
 
 Windows
-set BASEURL=mywebsite.com
+set AUT_BASEURL=mywebsite.com
 ```

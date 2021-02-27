@@ -39,7 +39,7 @@ namespace Testing.Foo.Core
                     PageLoadStrategy = PageLoadStrategy.Default
                 };
             if (_runHeadless)
-            options.AddArgument("--headless");
+                options.AddArgument("--headless");
             _driver = new ChromeDriver(_driverPath, options);
         }
 
