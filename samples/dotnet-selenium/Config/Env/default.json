@@ -1,0 +1,12 @@
+{
+    "baseUrl": "http://www.google.com",
+    "environment": "Local",
+    "browserName": "chrome",
+    "testUsername": "foo",
+    "testPassword": "bar",
+    "seleniumAddress":  "http://localhost:4444",
+    "runHeadless": false,
+    "implicitWaitTimeout": 5,
+    "webdriverWaitTimeout": 15,
+    "useRemoteDriver": false
+}
