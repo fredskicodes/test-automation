@@ -11,7 +11,7 @@ namespace Testing.Foo.Tests.Web.Search
         public void Setup()
         {
             _search.GoTo();
-            extentTest = extentReport.CreateTest(TestContext.CurrentContext.Test.Name);
+            extentTest = extentReport.CreateTest(TestContext.CurrentContext.Test.Properties.Get("Description").ToString());
         }
 
         [TearDown]
@@ -21,6 +21,7 @@ namespace Testing.Foo.Tests.Web.Search
         }
 
         [Test]
+        [Description("Search - Can Search by specific keyword.")]
         public void Search_CanSearchkeyword()
         {
             _search.DoSearch("selenium");
@@ -28,6 +29,7 @@ namespace Testing.Foo.Tests.Web.Search
         }
 
         [Test]
+        [Description("Search - Fail test on purpose.")]
         public void FailForFun()
         {
             Assert.Fail();
