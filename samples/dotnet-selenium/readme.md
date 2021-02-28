@@ -2,7 +2,7 @@
 This is a sample .NET project that uses NUnit as well as Selenium WebDriver to automate UI tests.
 
 ### Pre-requisites
-*  .NET Core
+*  .NET 5.0
 *  VSCode
 
 ### Build
@@ -15,6 +15,10 @@ dotnet build
 dotnet test -v=n
 ```
 >**Note**:  The `-v=n` argument is optional.
+
+### Test Report
+After executing test(s), an html report is generated.  By default, it's placed at the root level of `bin\Debug` or 
+`bin\Debug\net5.0`.
 
 ### Configuration
 ---
