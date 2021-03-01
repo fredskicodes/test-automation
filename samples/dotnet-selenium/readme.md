@@ -16,6 +16,11 @@ dotnet test -v=n
 ```
 >**Note**:  The `-v=n` argument is optional.
 
+### Selenium Grid using Docker
+```
+docker-compose up --build foo-tests
+```
+
 ### Test Report
 After executing test(s), an html report is generated.  By default, it's placed at the root level of `bin\Debug` or 
 `bin\Debug\net5.0`.

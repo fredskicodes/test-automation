@@ -15,7 +15,7 @@ namespace Testing.Foo.Core
         {
             if (_driver == null)
             {
-                var driverManager = new BrowserManager(_config["browserName"], Directory.GetCurrentDirectory());
+                var driverManager = new BrowserManager(_config);
                 _driver = driverManager.CreateDriver();
                 _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(int.Parse(_config["implicitWaitTimeout"]));
             }

@@ -1,52 +1,63 @@
+using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Remote;
 
 namespace Testing.Foo.Core
 {
     public class BrowserManager
     {
         private IWebDriver _driver { get; set; }
-        private string _browserName { get; set; }
-        private string _driverPath { get; set; }
-        private bool _runHeadless { get; set; }
+        private IConfiguration _config { get; }
         
-        public BrowserManager(string browserName, string driverPath, bool runHeadless = false)
+        public BrowserManager(IConfiguration config)
         {
-            _browserName = browserName;
-            _driverPath = driverPath;
-            _runHeadless = runHeadless;
+            _config = config;
         }
 
         public IWebDriver CreateDriver()
         {
-            if (!string.IsNullOrEmpty(_browserName) && !string.IsNullOrEmpty(_driverPath))
+            var browserName = _config["browserName"];
+            var driverPath = Directory.GetCurrentDirectory();
+            var runHeadless = bool.Parse(_config["runHeadless"]);
+            var useRemoteHost = bool.Parse(_config["useRemoteHost"]);
+            
+            if (!string.IsNullOrEmpty(browserName) && !string.IsNullOrEmpty(driverPath))
             {
-                switch(_browserName)
+                switch(browserName)
                 {
-                    case "chrome":  SetChrome();  break;
-                    case "firefox": SetFirefox(); break;
+                    case "chrome":  SetChrome(driverPath, runHeadless, useRemoteHost);  break;
+                    case "firefox": SetFirefox(driverPath, useRemoteHost); break;
                     default: break;
                 }
             }
             return _driver;
         }
 
-        public void SetChrome()
+        private void SetChrome(string driverPath, bool runHeadless, bool useRemoteHost)
         {
             var options = new ChromeOptions() {
                     AcceptInsecureCertificates = true,
                     PageLoadStrategy = PageLoadStrategy.Default
                 };
-            if (_runHeadless)
+            if (runHeadless) 
                 options.AddArgument("--headless");
-            _driver = new ChromeDriver(_driverPath, options);
+            if (useRemoteHost)
+                _driver = new RemoteWebDriver(new Uri(_config["seleniumAddress"]), options);
+            else
+                _driver = new ChromeDriver(driverPath, options);
         }
 
-        public void SetFirefox()
+        private void SetFirefox(string driverPath, bool useRemoteHost)
         {
             var options = new FirefoxOptions();
-            _driver = new FirefoxDriver(_driverPath, options);
+            if (useRemoteHost)
+                _driver = new RemoteWebDriver(new Uri(_config["seleniumAddress"]), options);
+            else
+                _driver = new FirefoxDriver(driverPath, options);
         }
     }
 }

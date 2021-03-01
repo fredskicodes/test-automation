@@ -1,12 +1,10 @@
 {
     "baseUrl": "http://www.google.com",
-    "environment": "Local",
+    "environment": "integration-test",
     "browserName": "chrome",
-    "testUsername": "foo",
-    "testPassword": "bar",
-    "seleniumAddress":  "http://localhost:4444",
+    "seleniumAddress":  "http://selenium-hub:4444",
     "runHeadless": false,
     "implicitWaitTimeout": 5,
     "webdriverWaitTimeout": 15,
-    "useRemoteHost": false
+    "useRemoteHost": true
 }
