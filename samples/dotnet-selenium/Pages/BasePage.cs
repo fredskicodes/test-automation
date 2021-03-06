@@ -1,18 +1,16 @@
-using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium;
-using Testing.Foo.Config;
-using static Testing.Foo.Core.DriverFactory;
+using Testing.Web.Config;
+using static Testing.Web.Core.DriverFactory;
 
-namespace Testing.Foo.Pages
+namespace Testing.Web.Pages
 {
     public abstract class BasePage
     {
         protected IWebDriver driver = GetWebDriver();
-        protected IConfiguration config = Configuration.GetConfiguration();
 
         public void GoTo()
         {
-            driver.Navigate().GoToUrl(config["baseUrl"]);
+            driver.Navigate().GoToUrl(TestConfig.BaseUrl);
         }
 
         public IWebElement SetInput(By locator, string value)

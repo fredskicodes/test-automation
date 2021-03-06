@@ -1,9 +1,10 @@
-using System;
+
 using NUnit.Framework;
 using OpenQA.Selenium;
-using static Testing.Foo.Core.DriverFactory;
+using Testing.Web.Config;
+using static Testing.Web.Core.DriverFactory;
 
-namespace Testing.Foo.Tests.Web
+namespace Testing.Web.Tests
 {
     [SetUpFixture]
     public class TestFixtureSetup
@@ -13,6 +14,7 @@ namespace Testing.Foo.Tests.Web
         [OneTimeSetUp]
         public void OnSetup()
         {
+            Configuration.Initialize(new TestConfig());
             _driver = GetWebDriver();
             _driver.Manage().Cookies.DeleteAllCookies();
         }

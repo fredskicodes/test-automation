@@ -3,7 +3,7 @@ using AventStack.ExtentReports.Reporter;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 
-namespace Testing.Foo.Core
+namespace Testing.Web.Core
 {
     public abstract class Reporter
     {

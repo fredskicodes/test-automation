@@ -1,21 +1,21 @@
 using NUnit.Framework;
-using Testing.Foo.Pages.Search;
+using Testing.Web.Pages.Search;
 
-namespace Testing.Foo.Tests.Web.Search
+namespace Testing.Web.Tests.Search
 {
     public class SearchTest : BaseTest
     {
         private SearchPage _search = new SearchPage();
 
         [SetUp]
-        public void Setup()
+        public void BeforeTest()
         {
             _search.GoTo();
             extentTest = extentReport.CreateTest(TestContext.CurrentContext.Test.Properties.Get("Description").ToString());
         }
 
         [TearDown]
-        public void TearDown()
+        public void AfterTest()
         {
             LogTestResult();
         }
@@ -26,13 +26,6 @@ namespace Testing.Foo.Tests.Web.Search
         {
             _search.DoSearch("selenium");
             _search.Verify.BodyTextContains("SeleniumHQ Browser Automation");
-        }
-
-        [Test]
-        [Description("Search - Fail test on purpose.")]
-        public void FailForFun()
-        {
-            Assert.Fail();
         }
     }
 }

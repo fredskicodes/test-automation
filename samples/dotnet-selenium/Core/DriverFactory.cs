@@ -1,23 +1,22 @@
-using Testing.Foo.Config;
-using Microsoft.Extensions.Configuration;
+using Testing.Web.Config;
 using OpenQA.Selenium;
 using System;
 using System.IO;
 
-namespace Testing.Foo.Core 
+namespace Testing.Web.Core
 {
     public class DriverFactory
     {
         private static IWebDriver _driver { get; set; }
-        private static IConfiguration _config = Configuration.GetConfiguration();
         
         public static IWebDriver GetWebDriver()
         {
             if (_driver == null)
             {
-                var driverManager = new BrowserManager(_config);
+                var driverPath = Directory.GetCurrentDirectory();
+                var driverManager = new BrowserManager(driverPath);
                 _driver = driverManager.CreateDriver();
-                _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(int.Parse(_config["implicitWaitTimeout"]));
+                _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(TestConfig.ImplicitWaitTimeout);
             }
             return _driver;
         }   

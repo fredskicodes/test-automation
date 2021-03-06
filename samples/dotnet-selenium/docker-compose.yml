@@ -1,7 +1,7 @@
 version: "3.4"
 
 services:
-  foo-tests:
+  web-tests:
     build: .
     environment:
       AUT_BROWSERNAME: ${AUT_BROWSERNAME:-chrome}
@@ -14,11 +14,7 @@ services:
     shm_size: 512mb
     depends_on:
       - selenium-hub
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-      - SE_NODE_MAX_CONCURRENT_SESSIONS=2
+    env_file: node-env.env
     ports:
       - "3901:5900"
   firefox:
@@ -26,11 +22,7 @@ services:
     shm_size: 512mb
     depends_on:
       - selenium-hub
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-      - SE_NODE_MAX_CONCURRENT_SESSIONS=2
+    env_file: node-env.env
     ports:
       - "3902:5900"
   selenium-hub:

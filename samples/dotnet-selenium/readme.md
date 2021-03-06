@@ -5,6 +5,14 @@ This is a sample .NET project that uses NUnit as well as Selenium WebDriver to a
 *  .NET 5.0
 *  VSCode
 
+#### Core Components
+|Name | Version |
+| --  | -- |
+| Selenium WebDriver | 4.0-beta |
+| FluentAssertions | 5.10
+| NUnit | 3.12 |
+| ExtentReports | 4.1 |
+
 ### Build
 ```
 dotnet build
@@ -18,7 +26,7 @@ dotnet test -v=n
 
 ### Selenium Grid using Docker
 ```
-docker-compose up --build foo-tests
+docker-compose up --build web-tests
 ```
 
 ### Test Report
@@ -43,8 +51,8 @@ The environment value must match a filename that exists in the `Config/Env` path
 #### Command Line
 ```
 Mac/Linux
-export AUT_BASEURL=mywebsie.com
+export AUT_BASEURL=mysite.com
 
 Windows
-set AUT_BASEURL=mywebsite.com
+set AUT_BASEURL=mysite.com
 ```

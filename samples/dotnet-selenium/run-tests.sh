@@ -1,2 +1,2 @@
 sleep 10s
-dotnet test Testing.Foo.csproj
+dotnet test Testing.Web.csproj

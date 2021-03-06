@@ -1,6 +1,6 @@
 using OpenQA.Selenium;
 
-namespace Testing.Foo.Pages.Search
+namespace Testing.Web.Pages.Search
 {
     public class SearchPage : BasePage
     {
